@@ -1,0 +1,23 @@
+diff -ur telepathy-qt-0.9.6.1.orig/TelepathyQt/CMakeLists.txt telepathy-qt-0.9.6.1/TelepathyQt/CMakeLists.txt
+--- telepathy-qt-0.9.6.1.orig/TelepathyQt/CMakeLists.txt	2015-05-24 21:33:18.000000000 +0200
++++ telepathy-qt-0.9.6.1/TelepathyQt/CMakeLists.txt	2015-10-13 10:57:32.063896800 +0200
+@@ -946,13 +946,13 @@
+     endif (TARGET doxygen-doc)
+ 
+     # Create the library
+-    #if (ENABLE_COMPILER_COVERAGE)
+-    #    add_library(telepathy-qt${QT_VERSION_MAJOR}-service STATIC ${telepathy_qt_service_SRCS})
+-    #else (ENABLE_COMPILER_COVERAGE)
+-    #    add_library(telepathy-qt${QT_VERSION_MAJOR}-service SHARED ${telepathy_qt_service_SRCS})
+-    #endif (ENABLE_COMPILER_COVERAGE)
++    if (ENABLE_COMPILER_COVERAGE)
++        add_library(telepathy-qt${QT_VERSION_MAJOR}-service STATIC ${telepathy_qt_service_SRCS})
++    else (ENABLE_COMPILER_COVERAGE)
++        add_library(telepathy-qt${QT_VERSION_MAJOR}-service SHARED ${telepathy_qt_service_SRCS})
++    endif (ENABLE_COMPILER_COVERAGE)
+     # lets build a static only library until we have a stable API/ABI
+-    add_library(telepathy-qt${QT_VERSION_MAJOR}-service STATIC ${telepathy_qt_service_SRCS})
++    #add_library(telepathy-qt${QT_VERSION_MAJOR}-service STATIC ${telepathy_qt_service_SRCS})
+ 
+     # generate service moc files
+     foreach(moc_src ${telepathy_qt_service_MOC_SRCS})
